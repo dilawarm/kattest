@@ -11,8 +11,6 @@ def getTestData(problem):
     resp = urlopen(request)
     zipfile = ZipFile(BytesIO(resp.read()))
     data = ["".join([line.decode("UTF-8") for line in zipfile.open(name).readlines()]) for name in zipfile.namelist()]
-    print(data)
-    print(len(data))
     testdata = {}
     for i in range(0, len(data), 2):
         if i < len(data) - 1:
