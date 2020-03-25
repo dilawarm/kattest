@@ -1,8 +1,9 @@
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen, Request
-from languages import python, cpp, c
+from kattest.languages import python, cpp, c
 import emoji
+import sys
 
 def getTestData(problem):
     """
@@ -22,6 +23,7 @@ def getTestData(problem):
 def kattest(filename):
     """
     Method for running your code and returning output on the form {input: code output}
+    Comparing user output with correct output
     """
     problem, extension = filename.split(".")
     testdata = getTestData(problem)
@@ -38,11 +40,22 @@ def kattest(filename):
         if output[out] == testdata[out]:
             print(f'{emoji.emojize(":white_check_mark:", use_aliases=True)} Sample Input {counter}')
         else:
-            print(f'{emoji.emojize(":x:")} Sample Input {counter}')
+            print(f'{emoji.emojize(":x:", use_aliases=True)} Sample Input {counter}')
         print("INPUT")
         print(out)
         print("CORRECT OUTPUT")
         print(testdata[out])
         print("USER OUTPUT")
         print(output[out])
+        print("------------------------------")
         counter += 1
+
+def main():
+    try:
+        filename = sys.argv[1]
+        kattest(filename)
+    except:
+        "Could not run your code."
+
+if __name__ == "__main__":
+    main()
