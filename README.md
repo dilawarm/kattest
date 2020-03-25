@@ -1,5 +1,6 @@
 # Kattis-Tester
 Script for testing your code with the sample data files provided by Kattis.
+![](kattest-output.JPG)
 
 ## Supported languages
 * C
