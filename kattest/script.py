@@ -26,7 +26,7 @@ def kattest(filename):
     Comparing user output with correct output
     """
     problem, extension = filename.split(".")
-    testdata = getTestData(problem)
+    testdata = getTestData(problem.lower())
     if extension == "py":
         output, time = python(filename, testdata)
     elif extension == "cpp":
