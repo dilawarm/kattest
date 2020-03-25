@@ -28,16 +28,18 @@ def kattest(filename):
     problem, extension = filename.split(".")
     testdata = getTestData(problem)
     if extension == "py":
-        output = python(filename, testdata)
+        output, time = python(filename, testdata)
     elif extension == "cpp":
-        output = cpp(filename, testdata)
+        output, time = cpp(filename, testdata)
     elif extension == "c":
-        output = c(filename, testdata)
+        output, time = c(filename, testdata)
     else:
         return "Language is not supported :("
     counter = 1
     for out in output:
-        if output[out] == testdata[out]:
+        correct = testdata[out].split("\n")
+        user = output[out].split("\n")
+        if formatter(user) == formatter(correct):
             print(f'{emoji.emojize(":white_check_mark:", use_aliases=True)} Sample Input {counter}')
         else:
             print(f'{emoji.emojize(":x:", use_aliases=True)} Sample Input {counter}')
@@ -49,13 +51,7 @@ def kattest(filename):
         print(output[out])
         print("------------------------------")
         counter += 1
+    print(f"Time: {time} seconds")
 
-def main():
-    try:
-        filename = sys.argv[1]
-        kattest(filename)
-    except:
-        "Could not run your code."
-
-if __name__ == "__main__":
-    main()
+def formatter(output):
+    return [out.rstrip() for out in output]
