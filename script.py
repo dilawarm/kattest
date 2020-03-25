@@ -46,4 +46,3 @@ def kattest(filename):
         print("USER OUTPUT")
         print(output[out])
         counter += 1
-
