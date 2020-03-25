@@ -5,6 +5,7 @@ Script for testing your code with the sample data files provided by Kattis.
 ## Supported languages
 * C
 * C++
+* Java
 * Python 3
 
 ## How to install
