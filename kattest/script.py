@@ -1,7 +1,7 @@
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen, Request
-from kattest.languages import python, cpp, c
+from kattest.languages import python, cpp, c, java
 import emoji
 import sys
 
@@ -33,6 +33,8 @@ def kattest(filename):
         output, time = cpp(filename, testdata)
     elif extension == "c":
         output, time = c(filename, testdata)
+    elif extension == "java":
+        output, time = java(filename, testdata)
     else:
         return "Language is not supported :("
     counter = 1

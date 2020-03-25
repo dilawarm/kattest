@@ -31,3 +31,15 @@ def c(filename, inputs):
     endTime = time.time() - startTime
     check_output(["rm", "-rf", f"{problem}"])
     return output, endTime
+
+def java(filename, inputs):
+    output = {}
+    problem = filename.split(".")[0]
+    check_output(["javac", "-encoding", "UTF-8", filename])
+    startTime = time.time()
+    for input in inputs:
+        output[input] = check_output(["java", "-Dfile.encoding=UTF-8", "-XX:+UseSerialGC", "-Xss64m", f"{problem}"], 
+                                      input=input, universal_newlines=True)
+    endTime = time.time() - startTime
+    check_output(["rm", "-rf", f"{problem}.class"])
+    return output, endTime
