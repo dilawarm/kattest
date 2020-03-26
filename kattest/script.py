@@ -37,13 +37,13 @@ def kattest(filename):
         output, time = java(filename, testdata)
     else:
         return "Language is not supported :("
-    counter, correct = 1, 0
+    counter, correct_count = 1, 0
     for out in output:
         correct = testdata[out].split("\n")
         user = output[out].split("\n")
         if formatter(user) == formatter(correct):
             print(f'{emoji.emojize(":white_check_mark:", use_aliases=True)} Sample Input {counter}')
-            correct += 1
+            correct_count += 1
         else:
             print(f'{emoji.emojize(":x:", use_aliases=True)} Sample Input {counter}')
         print("INPUT")
@@ -55,7 +55,7 @@ def kattest(filename):
         print("------------------------------")
         counter += 1
     print(f"Time: {time} seconds")
-    print(f"Verdict: {correct}/{counter-1} correct cases")
+    print(f"Verdict: {correct_count}/{counter-1} correct cases")
 
 def formatter(output):
     return [out.rstrip() for out in output]

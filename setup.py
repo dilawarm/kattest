@@ -23,7 +23,7 @@ except Exception as error:
 
 setup(
     name="kattest",
-    version="0.2",
+    version="0.3",
     description="Script for testing your code with the sample data files provided by Kattis.",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
@@ -31,7 +31,7 @@ setup(
     author_email="dilawarmm@outlook.com",
     author="Dilawar Mahmood",
     packages=find_packages(),
-    download_url = "https://github.com/dilawarm/kattest/archive/v_02.tar.gz",
+    download_url = "https://github.com/dilawarm/kattest/archive/v_03.tar.gz",
     install_requires=[
         'emoji',
     ],
