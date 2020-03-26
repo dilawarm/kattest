@@ -1,4 +1,5 @@
 __pycache__
 build
-Kattis_Tester.egg-info
+kattest.egg-info
 kattis
+dist

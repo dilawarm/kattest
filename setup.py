@@ -19,7 +19,7 @@ except Exception as error:
     print("Unable to read the README file: " + str(error))
 
 setup(
-    name="Kattis-Tester",
+    name="kattest",
     version="0.1",
     description="Script for testing your code with the sample data files provided by Kattis.",
     url="https://github.com/dilawarm/kattest",
@@ -28,6 +28,10 @@ setup(
     author_email="dilawarmm@outlook.com",
     author="Dilawar Mahmood",
     packages=find_packages(),
+    download_url = "https://github.com/dilawarm/kattest/archive/v_01.tar.gz",
+    install_requires=[
+        'emoji',
+    ],
     entry_points={
         "console_scripts": [
             "kattest = kattest.__main__:main"
