@@ -2,6 +2,9 @@
 Script for testing your code with the sample data files provided by Kattis.
 ![](kattest-output.JPG)
 
+## Requirements
+* Python 3.6 or above.
+
 ## Supported languages
 * C
 * C++
