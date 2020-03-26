@@ -22,7 +22,7 @@ setup(
     name="Kattis-Tester",
     version="0.1",
     description="Script for testing your code with the sample data files provided by Kattis.",
-    url="https://github.com/dilawarm/Kattis-Tester",
+    url="https://github.com/dilawarm/kattest",
     license="MIT",
     long_description=long_description,
     author_email="dilawarmm@outlook.com",
