@@ -33,6 +33,7 @@ setup(
     download_url = "https://github.com/dilawarm/kattest/archive/v_02.tar.gz",
     install_requires=[
         'emoji',
+        'beautifulsoup4',
     ],
     entry_points={
         "console_scripts": [
