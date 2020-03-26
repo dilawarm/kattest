@@ -1,4 +1,4 @@
-# Kattis-Tester
+# kattest
 Script for testing your code with the sample data files provided by Kattis.
 ![](kattest-output.JPG)
 
@@ -9,11 +9,15 @@ Script for testing your code with the sample data files provided by Kattis.
 * Python 3
 
 ## How to install
+On Ubuntu / Mint, install <i>kattest</i> with the following commands:
 ```
-https://github.com/dilawarm/Kattis-Tester.git
-cd Kattis-Tester
-pip install -r requirements.txt
-sudo python setup.py install
+sudo apt update
+sudo apt install python3-dev python3-pip python3-setuptools
+sudo pip3 install kattest
+```
+On other systems, install <i>kattest</i> by using `pip`:
+```
+pip install kattest
 ```
 
 ## How to run
