@@ -15,7 +15,7 @@ sudo apt update
 sudo apt install python3-dev python3-pip python3-setuptools
 sudo pip3 install kattest
 ```
-On other systems, install `kattest` by using `pip`:
+On other systems, install <i>kattest</i> by using `pip`:
 ```
 pip install kattest
 ```
