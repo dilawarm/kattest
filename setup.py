@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: UTF-8
+
 import os
 from setuptools import setup, find_packages
 from setuptools.command.install import install as _install
