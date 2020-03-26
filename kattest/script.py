@@ -45,5 +45,3 @@ def kattest(filename, kattis):
 
 def formatter(output):
     return [out.rstrip() for out in output if out != '']
-
-kattest("1328D.cpp", False)
