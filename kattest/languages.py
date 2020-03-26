@@ -18,7 +18,10 @@ def cpp(filename, inputs):
     for input in inputs:
         output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
     endTime = time.time() - startTime
-    check_output(["rm", "-rf", f"{problem}"])
+    try:
+        check_output(["rm", "-rf", f"{problem}"])
+    except:
+        pass
     return output, endTime
 
 def c(filename, inputs):
@@ -29,7 +32,10 @@ def c(filename, inputs):
     for input in inputs:
         output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
     endTime = time.time() - startTime
-    check_output(["rm", "-rf", f"{problem}"])
+    try:
+        check_output(["rm", "-rf", f"{problem}"])
+    except:
+        pass
     return output, endTime
 
 def java(filename, inputs):
@@ -41,5 +47,8 @@ def java(filename, inputs):
         output[input] = check_output(["java", "-Dfile.encoding=UTF-8", "-XX:+UseSerialGC", "-Xss64m", f"{problem}"], 
                                       input=input, universal_newlines=True)
     endTime = time.time() - startTime
-    check_output(["rm", "-rf", f"{problem}.class"])
+    try:
+        check_output(["rm", "-rf", f"{problem}.class"])
+    except:
+        pass
     return output, endTime
