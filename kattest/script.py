@@ -1,32 +1,18 @@
-from io import BytesIO
-from zipfile import ZipFile
-from urllib.request import urlopen, Request
 from kattest.languages import python, cpp, c, java
+from kattest.data import getTestData, CF
 import emoji
 import sys
 
-def getTestData(problem):
-    """
-    Returns a dictionary on the form {input: correct output}
-    """
-    url = f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip"
-    request = Request(url, headers={'User-Agent': 'Chrome Browser'})
-    resp = urlopen(request)
-    zipfile = ZipFile(BytesIO(resp.read()))
-    data = ["".join([line.decode("UTF-8") for line in zipfile.open(name).readlines()]) for name in zipfile.namelist()]
-    testdata = {}
-    for i in range(0, len(data), 2):
-        if i < len(data) - 1:
-            testdata[data[i]] = data[i + 1]
-    return testdata
-
-def kattest(filename):
+def kattest(filename, kattis):
     """
     Method for running your code and returning output on the form {input: code output}
     Comparing user output with correct output
     """
     problem, extension = filename.split(".")
-    testdata = getTestData(problem.lower())
+    if kattis:
+        testdata = getTestData(problem.lower())
+    else:
+        testdata = CF(problem)
     if extension == "py":
         output, time = python(filename, testdata)
     elif extension == "cpp":
@@ -58,4 +44,4 @@ def kattest(filename):
     print(f"Verdict: {correct_count}/{counter-1} correct cases")
 
 def formatter(output):
-    return [out.rstrip() for out in output]
+    return [out.rstrip() for out in output if out != '']

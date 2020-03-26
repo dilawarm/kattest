@@ -1,6 +1,5 @@
 # kattest
 Script for testing your code with the sample data files provided by Kattis.
-![](kattest-output.JPG)
 
 ## Supported languages
 * C
@@ -21,14 +20,18 @@ pip install kattest
 ```
 
 ## How to run
-Make sure that your solution has the following format:
-```
-[Problem ID].[extension]
-Example: exponial.cpp
-```
+### Kattis
 Run the following command from the same directory as your solution:
 ```
 kattest [Problem ID].[extension]
 Example: kattest exponial.cpp
 ```
+
+### Code Forces
+Run the following command from the same directory as your solution:
+```
+kattest CF [Problem ID].[extension]
+Example: kattest CF 1328A.cpp
+```
+
 Enjoy!

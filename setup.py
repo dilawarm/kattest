@@ -10,7 +10,6 @@ class install(_install):
     def run(self):
         _install.run(self)
 
-
 long_description = ""
 
 try:
@@ -23,7 +22,7 @@ except Exception as error:
 
 setup(
     name="kattest",
-    version="0.3",
+    version="0.4",
     description="Script for testing your code with the sample data files provided by Kattis.",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
@@ -31,7 +30,7 @@ setup(
     author_email="dilawarmm@outlook.com",
     author="Dilawar Mahmood",
     packages=find_packages(),
-    download_url = "https://github.com/dilawarm/kattest/archive/v_03.tar.gz",
+    download_url = "https://github.com/dilawarm/kattest/archive/v_04.tar.gz",
     install_requires=[
         'emoji',
     ],

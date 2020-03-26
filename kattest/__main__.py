@@ -3,10 +3,13 @@ from kattest.script import kattest
 
 def main():
     try:
-        filename = sys.argv[1]
-        kattest(filename)
+        cmd = sys.argv[1:]
+        if cmd[0] == 'CF':
+            kattest(cmd[1], False)
+        else:
+            kattest(cmd[0], True)
     except:
-        "Could not run your code."
-
+        print("Could not run your code.")
+        
 if __name__ == "__main__":
     main()
