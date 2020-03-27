@@ -41,6 +41,6 @@ Example: kattest CF 1328A.py
 Run the following command from the same directory as your solution:
 ```
 kattest CF [Problem ID].[extension]
-Example: kattest CF 1091.c
+Example: kattest CSES 1091.c
 ```
 Enjoy!
