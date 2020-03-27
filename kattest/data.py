@@ -7,6 +7,8 @@ def Kattis(problem):
     """
     Returns a dictionary on the form {input: correct output} from Kattis.
     """
+    if problem == "hello":
+        return {"": "Hello World!\n"}
     url = f"https://open.kattis.com/problems/{problem}/file/statement/samples.zip"
     request = Request(url, headers={'User-Agent': 'Chrome Browser'})
     resp = urlopen(request)
