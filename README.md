@@ -10,6 +10,8 @@ Script for testing your code with the sample data files provided by Kattis, Code
 * Java
 * Python 3
 
+Check out ![https://open.kattis.com/help](https://open.kattis.com/help) for compiler settings for the different languages.
+
 ## How to install
 On Ubuntu / Mint, install <i>kattest</i> with the following commands:
 ```
