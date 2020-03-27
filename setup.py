@@ -21,7 +21,7 @@ except Exception as error:
 
 setup(
     name="kattest",
-    version="0.8",
+    version="0.9",
     description="Script for testing your code with the sample data files provided by Kattis.",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
