@@ -9,27 +9,19 @@ class install(_install):
     def run(self):
         _install.run(self)
 
-long_description = ""
-
-try:
-    if os.path.isfile("README.rst"):
-        long_description = open("README.rst", "r").read()
-    elif os.path.isfile("README.md"):
-        long_description = open("README.md", "r").read()
-except Exception as error:
-    print("Unable to read the README file: " + str(error))
+long_description = "Script for testing your code with the sample data files provided by Kattis, Code Forces and CSES!"
 
 setup(
     name="kattest",
-    version="0.9",
-    description="Script for testing your code with the sample data files provided by Kattis.",
+    version="1.1",
+    description="Script for testing your code with the sample data files provided by Kattis, Code Forces and CSES!",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
     long_description=long_description,
     author_email="dilawarmm@outlook.com",
     author="Dilawar Mahmood",
     packages=find_packages(),
-    download_url = "https://github.com/dilawarm/kattest/archive/v_02.tar.gz",
+    download_url = "https://github.com/dilawarm/kattest/archive/v_03.tar.gz",
     install_requires=[
         'emoji',
         'beautifulsoup4',

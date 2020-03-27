@@ -48,6 +48,7 @@ def CSES(problem):
     url = f"https://cses.fi/problemset/task/{problem}"
     soup = webScraper(url)
     io = [res.text.replace('\r', '') for res in soup.find_all("code")]
+    print(io)
     return makeTestData(io)
 
 def webScraper(url):
