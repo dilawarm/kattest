@@ -3,14 +3,13 @@ Script for testing your code with the sample data files provided by Kattis, Code
 
 ## Requirements
 * Python 3.6 or above.
+* Compilers for the different languages you want to use with _kattest_. Check out [Kattis](https://open.kattis.com/help) for more.
 
 ## Supported languages
 * C
 * C++
 * Java
 * Python 3
-
-Check out ![https://open.kattis.com/help](https://open.kattis.com/help) for compiler settings for the different languages.
 
 ## How to install
 On Ubuntu / Mint, install <i>kattest</i> with the following commands:
