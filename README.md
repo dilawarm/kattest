@@ -1,5 +1,5 @@
 # kattest
-Script for testing your code with the sample data files provided by Kattis.
+Script for testing your code with the sample data files provided by Kattis, Code Forces and CSES!
 
 ## Requirements
 * Python 3.6 or above.
