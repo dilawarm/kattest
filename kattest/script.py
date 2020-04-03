@@ -1,4 +1,4 @@
-from kattest.languages import python, cpp, c, java
+from kattest.languages import python, cpp, c, java, cSharp
 from kattest.data import Kattis, CF, CSES
 import emoji
 import sys
@@ -23,6 +23,8 @@ def kattest(filename, site):
         output, time = c(filename, testdata)
     elif extension == "java":
         output, time = java(filename, testdata)
+    elif extension == "cs":
+        output, time = cSharp(filename, testdata)
     else:
         print("Language is not supported :(")
         return -1
