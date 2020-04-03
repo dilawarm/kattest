@@ -56,7 +56,7 @@ def java(filename, inputs):
 def cSharp(filename, inputs):
     output = {}
     problem = filename.split(".")[0]
-    check_output(["dmcs", "-optimize+", filename])
+    check_output(["dmcs", "-optimize+", "-r:System.Numerics", filename])
     startTime = time.time()
     for input in inputs:
         output[input] = check_output([f"./{problem}.exe"], input=input, universal_newlines=True)
