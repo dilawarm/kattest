@@ -7,6 +7,7 @@ Script for testing your code with the sample data files provided by Kattis, Code
 
 ## Supported languages
 * C
+* C#
 * C++
 * Java
 * Python 3

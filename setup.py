@@ -13,7 +13,7 @@ long_description = "Script for testing your code with the sample data files prov
 
 setup(
     name="kattest",
-    version="1.3",
+    version="1.4",
     description="Script for testing your code with the sample data files provided by Kattis, Code Forces and CSES!",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
