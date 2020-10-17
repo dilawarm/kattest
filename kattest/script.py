@@ -1,4 +1,4 @@
-from kattest.languages import python, cpp, c, java, cSharp
+from kattest.languages import python, cpp, c, java, cSharp, haskell
 from kattest.data import Kattis, CF, CSES
 import emoji
 import sys
@@ -25,6 +25,8 @@ def kattest(filename, site):
         output, time = java(filename, testdata)
     elif extension == "cs":
         output, time = cSharp(filename, testdata)
+    elif extension == "hs":
+        output, time = haskell(filename, testdata)
     else:
         print("Language is not supported :(")
         return -1
