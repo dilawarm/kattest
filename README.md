@@ -9,6 +9,7 @@ Script for testing your code with the sample data files provided by Kattis, Code
 * C
 * C#
 * C++
+* Haskell
 * Java
 * Python 3
 

@@ -66,3 +66,17 @@ def cSharp(filename, inputs):
     except:
         pass
     return output, endTime
+
+def haskell(filename, inputs):
+    output = {}
+    problem = filename.split(".")[0]
+    check_output(["ghc", "-dynamic", "-O2", filename, "-o", problem])
+    startTime = time.time()
+    for input in inputs:
+        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
+    endTime = time.time() - startTime
+    try:
+        check_output(["rm", "-rf", f"{problem}.hi", f"{problem}.o", f"{problem}"])
+    except:
+        pass
+    return output, endTime
