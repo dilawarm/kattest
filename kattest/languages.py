@@ -2,27 +2,61 @@ from subprocess import check_output
 from sys import executable
 import time
 
+
+class Language:
+    def __init__(self, extention, compile_line, output):
+        self.extention = extention
+        self.compile_line = compile_line
+        self.output = output
+
+
+def run_code(lang, filename, inputs):
+    problem = filename.split(".")[0]
+
+    language_map = {
+        "py": Language("py", [], None),
+        "cpp": Language(
+            "cpp",
+            ["g++", filename, "-g", "-O2", "-std=gnu++17", "-o", problem],
+            filename,
+        ),
+        "c": c,
+        "java": java,
+        "cs": cSharp,
+        "hs": haskell,
+    }
+
+    output = {}
+    start_time = time.time()
+
+
 def python(filename, inputs):
     output = {}
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output([executable, filename], input=input, universal_newlines=True)
+        output[input] = check_output(
+            [executable, filename], input=input, universal_newlines=True
+        )
     endTime = time.time() - startTime
     return output, endTime
+
 
 def cpp(filename, inputs):
     output = {}
     problem = filename.split(".")[0]
-    check_output(["g++", filename, "-g", "-O2", "-std=gnu++17", "-o", f"{problem}"])
+    check_output(["g++", filename, "-g", "-O2", "-std=gnu++17", "-o", problem])
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
+        output[input] = check_output(
+            [f"./{problem}"], input=input, universal_newlines=True
+        )
     endTime = time.time() - startTime
     try:
         check_output(["rm", "-rf", f"{problem}"])
     except:
         pass
     return output, endTime
+
 
 def c(filename, inputs):
     output = {}
@@ -30,7 +64,9 @@ def c(filename, inputs):
     check_output(["gcc", filename, "-g", "-O2", "-std=gnu11", "-o", f"{problem}"])
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
+        output[input] = check_output(
+            [f"./{problem}"], input=input, universal_newlines=True
+        )
     endTime = time.time() - startTime
     try:
         check_output(["rm", "-rf", f"{problem}"])
@@ -38,14 +74,24 @@ def c(filename, inputs):
         pass
     return output, endTime
 
+
 def java(filename, inputs):
     output = {}
     problem = filename.split(".")[0]
     check_output(["javac", "-encoding", "UTF-8", filename])
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output(["java", "-Dfile.encoding=UTF-8", "-XX:+UseSerialGC", "-Xss64m", f"{problem}"], 
-                                      input=input, universal_newlines=True)
+        output[input] = check_output(
+            [
+                "java",
+                "-Dfile.encoding=UTF-8",
+                "-XX:+UseSerialGC",
+                "-Xss64m",
+                f"{problem}",
+            ],
+            input=input,
+            universal_newlines=True,
+        )
     endTime = time.time() - startTime
     try:
         check_output(["rm", "-rf", f"{problem}.class"])
@@ -53,13 +99,16 @@ def java(filename, inputs):
         pass
     return output, endTime
 
+
 def cSharp(filename, inputs):
     output = {}
     problem = filename.split(".")[0]
     check_output(["dmcs", "-optimize+", "-r:System.Numerics", filename])
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output([f"./{problem}.exe"], input=input, universal_newlines=True)
+        output[input] = check_output(
+            [f"./{problem}.exe"], input=input, universal_newlines=True
+        )
     endTime = time.time() - startTime
     try:
         check_output(["rm", "-rf", f"{problem}.exe"])
@@ -67,13 +116,16 @@ def cSharp(filename, inputs):
         pass
     return output, endTime
 
+
 def haskell(filename, inputs):
     output = {}
     problem = filename.split(".")[0]
     check_output(["ghc", "-dynamic", "-O2", filename, "-o", problem])
     startTime = time.time()
     for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
+        output[input] = check_output(
+            [f"./{problem}"], input=input, universal_newlines=True
+        )
     endTime = time.time() - startTime
     try:
         check_output(["rm", "-rf", f"{problem}.hi", f"{problem}.o", f"{problem}"])
