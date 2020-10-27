@@ -1,4 +1,4 @@
-from kattest.languages import python, cpp, c, java, cSharp, haskell
+from kattest.languages import run_code
 from kattest.data import Kattis, CF, CSES
 import emoji
 import sys
@@ -20,11 +20,12 @@ def kattest(filename, site):
         print("This problem site is not supported :(")
         return -1
 
-    if extension in language_map:
-        output, time = language_map[extension](filename, testdata)
-    else:
+    out = run_code(filename, problem, extension, testdata)
+    if out == -1:
         print("Language is not supported :(")
         return -1
+    else:
+        output, time = out[0], out[1]
 
     counter, correct_count = 1, 0
     for out in output:
