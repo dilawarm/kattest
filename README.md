@@ -30,7 +30,7 @@ pip install kattest
 Run the following command from the same directory as your solution:
 ```
 kattest [Problem ID].[extension]
-Example: kattest exponial.cpp
+Example: kattest Kattis exponial.cpp
 ```
 
 ### Code Forces
