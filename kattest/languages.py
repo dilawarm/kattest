@@ -1,5 +1,4 @@
 from subprocess import check_output
-from sys import executable
 import time
 
 
@@ -11,7 +10,6 @@ class Language:
 
 
 def run_code(filename, problem, extension, inputs):
-
     language_map = {
         "py": Language(None, f"python3 {filename}", None),
         "cpp": Language(
@@ -33,9 +31,9 @@ def run_code(filename, problem, extension, inputs):
             f"{problem}.exe",
         ),
         "hs": Language(
-            f"ghc -dynamic -O2 f{filename} -o f{problem}",
+            f"ghc -dynamic -O2 {filename} -o {problem}",
             f"./{problem}",
-            f"{problem}.hi {problem}.o, {problem}",
+            f"{problem}.hi {problem}.o {problem}",
         ),
     }
 
@@ -50,16 +48,23 @@ def run_code(filename, problem, extension, inputs):
 
     start_time = time.time()
 
-    for inp in inputs:
-        output[inp] = check_output(
-            lang.run_line.split(), input=inp, universal_newlines=True
-        )
+    if lang.run_line:
+        for inp in inputs:
+            output[inp] = check_output(
+                lang.run_line.split(), input=inp, universal_newlines=True
+            )
 
     end_time = time.time() - start_time
 
-    try:
-        check_output(f"rm -rf {lang.remove_line}".split())
-    except:
-        pass
+    if lang.remove_line:
+        try:
+            check_output(f"rm -rf {lang.remove_line}".split())
+        except:
+            try:
+                check_output(
+                    f"del /f {lang.remove_line}".split()
+                )  # For Windows (Normie OS) users.
+            except:
+                pass
 
     return output, end_time

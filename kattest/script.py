@@ -1,7 +1,6 @@
 from kattest.languages import run_code
 from kattest.data import Kattis, CF, CSES
 import emoji
-import sys
 
 
 def kattest(filename, site):

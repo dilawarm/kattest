@@ -25,27 +25,24 @@ def CF(problem):
     """
     Returns a dictionary on the form {input: correct output} from Code Forces
     """
+
+    def cleanSoup(soup):
+        return [
+            BeautifulSoup(str(inp.find("pre")).replace(newline, "\n"), "html.parser")
+            .find("pre")
+            .text
+            for inp in soup
+        ]
+
     num, let = problem[:-1], problem[-1]
     url = f"https://codeforces.com/problemset/problem/{num}/{let}"
     soup = webScraper(url)
-    io = soup.find("div", class_="sample-test").text.split("\n")
-    testdata = {}
-    i = 0
-    while i != len(io) - 1:
-        if io[i] == "Input":
-            input = ""
-            i += 1
-            while io[i] != "Output":
-                input += io[i] + "\n"
-                i += 1
-            output = ""
-            i += 1
-            while io[i] != "Input":
-                if i == len(io) - 1:
-                    break
-                output += io[i] + "\n"
-                i += 1
-            testdata[input] = output
+
+    newline = "<br/>"
+    inputs = cleanSoup(soup.findAll(class_="input"))
+    outputs = cleanSoup(soup.findAll(class_="output"))
+
+    testdata = {inputs[i]: outputs[i] for i in range(len(inputs))}
     return testdata
 
 
