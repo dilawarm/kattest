@@ -1,82 +1,70 @@
 from subprocess import check_output
-from sys import executable
 import time
 
-def python(filename, inputs):
-    output = {}
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output([executable, filename], input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    return output, endTime
 
-def cpp(filename, inputs):
-    output = {}
-    problem = filename.split(".")[0]
-    check_output(["g++", filename, "-g", "-O2", "-std=gnu++17", "-o", f"{problem}"])
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    try:
-        check_output(["rm", "-rf", f"{problem}"])
-    except:
-        pass
-    return output, endTime
+class Language:
+    def __init__(self, compile_line, run_line, remove_line):
+        self.compile_line = compile_line
+        self.run_line = run_line
+        self.remove_line = remove_line
 
-def c(filename, inputs):
-    output = {}
-    problem = filename.split(".")[0]
-    check_output(["gcc", filename, "-g", "-O2", "-std=gnu11", "-o", f"{problem}"])
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    try:
-        check_output(["rm", "-rf", f"{problem}"])
-    except:
-        pass
-    return output, endTime
 
-def java(filename, inputs):
-    output = {}
-    problem = filename.split(".")[0]
-    check_output(["javac", "-encoding", "UTF-8", filename])
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output(["java", "-Dfile.encoding=UTF-8", "-XX:+UseSerialGC", "-Xss64m", f"{problem}"], 
-                                      input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    try:
-        check_output(["rm", "-rf", f"{problem}.class"])
-    except:
-        pass
-    return output, endTime
+def run_code(filename, problem, extension, inputs):
+    language_map = {
+        "py": Language(None, f"python3 {filename}", None),
+        "cpp": Language(
+            f"g++ {filename} -g -O2 -std=gnu++17 -o {problem}",
+            f"./{problem}",
+            problem,
+        ),
+        "c": Language(
+            f"gcc {filename} -g -O2 -std=gnu11 -o {problem}", f"./{problem}", problem
+        ),
+        "java": Language(
+            f"javac -encoding UTF-8 {filename}",
+            f"java -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss64m {problem}",
+            f"{problem}.class",
+        ),
+        "cs": Language(
+            f"dmcs -optimize+ -r:System.Numerics {filename}",
+            f"./{problem}.exe",
+            f"{problem}.exe",
+        ),
+        "hs": Language(
+            f"ghc -dynamic -O2 {filename} -o {problem}",
+            f"./{problem}",
+            f"{problem}.hi {problem}.o {problem}",
+        ),
+    }
 
-def cSharp(filename, inputs):
-    output = {}
-    problem = filename.split(".")[0]
-    check_output(["dmcs", "-optimize+", "-r:System.Numerics", filename])
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output([f"./{problem}.exe"], input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    try:
-        check_output(["rm", "-rf", f"{problem}.exe"])
-    except:
-        pass
-    return output, endTime
+    if extension not in language_map:
+        return -1
 
-def haskell(filename, inputs):
     output = {}
-    problem = filename.split(".")[0]
-    check_output(["ghc", "-dynamic", "-O2", filename, "-o", problem])
-    startTime = time.time()
-    for input in inputs:
-        output[input] = check_output([f"./{problem}"], input=input, universal_newlines=True)
-    endTime = time.time() - startTime
-    try:
-        check_output(["rm", "-rf", f"{problem}.hi", f"{problem}.o", f"{problem}"])
-    except:
-        pass
-    return output, endTime
+    lang = language_map[extension]
+
+    if lang.compile_line:
+        check_output(lang.compile_line.split())
+
+    start_time = time.time()
+
+    if lang.run_line:
+        for inp in inputs:
+            output[inp] = check_output(
+                lang.run_line.split(), input=inp, universal_newlines=True
+            )
+
+    end_time = time.time() - start_time
+
+    if lang.remove_line:
+        try:
+            check_output(f"rm -rf {lang.remove_line}".split())
+        except:
+            try:
+                check_output(
+                    f"del /f {lang.remove_line}".split()
+                )  # For Windows (Normie OS) users.
+            except:
+                pass
+
+    return output, end_time
