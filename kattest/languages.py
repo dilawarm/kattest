@@ -9,31 +9,36 @@ class Language:
         self.remove_line = remove_line
 
 
-def run_code(filename, problem, extension, inputs):
+def run_code(file, inputs):
+    if file.count(".") != 1:
+        return -1
+
+    filename, extension = file.split(".")
+
     language_map = {
-        "py": Language(None, f"python3 {filename}", None),
+        "py": Language(None, f"python3 {file}", None),
         "cpp": Language(
-            f"g++ {filename} -g -O2 -std=gnu++17 -o {problem}",
-            f"./{problem}",
-            problem,
+            f"g++ {file} -g -O2 -std=gnu++17 -o {filename}",
+            f"./{filename}",
+            filename,
         ),
         "c": Language(
-            f"gcc {filename} -g -O2 -std=gnu11 -o {problem}", f"./{problem}", problem
+            f"gcc {file} -g -O2 -std=gnu11 -o {filename}", f"./{filename}", filename
         ),
         "java": Language(
-            f"javac -encoding UTF-8 {filename}",
-            f"java -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss64m {problem}",
-            f"{problem}.class",
+            f"javac -encoding UTF-8 {file}",
+            f"java -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss64m {filename}",
+            f"{filename}.class",
         ),
         "cs": Language(
-            f"dmcs -optimize+ -r:System.Numerics {filename}",
-            f"./{problem}.exe",
-            f"{problem}.exe",
+            f"dmcs -optimize+ -r:System.Numerics {file}",
+            f"./{filename}.exe",
+            f"{filename}.exe",
         ),
         "hs": Language(
-            f"ghc -dynamic -O2 {filename} -o {problem}",
-            f"./{problem}",
-            f"{problem}.hi {problem}.o {problem}",
+            f"ghc -dynamic -O2 {file} -o {filename}",
+            f"./{filename}",
+            f"{filename}.hi {filename}.o {filename}",
         ),
     }
 
