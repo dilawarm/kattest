@@ -14,7 +14,7 @@ def main():
         "-f", "--file", type=str, metavar="", required=True, help="filename"
     )
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("-v", "--verbose", action="store_true", help="print verbose")
+    group.add_argument("-q", "--quiet", action="store_true", help="print quiet")
     args = parser.parse_args()
 
     kattest(args)

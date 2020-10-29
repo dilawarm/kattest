@@ -14,7 +14,7 @@ def kattest(args):
     problem = args.problem
     file = args.file
     site = args.site
-    verbose = args.verbose
+    quiet = args.quiet
 
     if site in site_map:
         testdata = site_map[site](problem.lower())
@@ -34,17 +34,17 @@ def kattest(args):
         correct = testdata[out].split("\n")
         user = output[out].split("\n")
         if formatter(user) == formatter(correct):
-            if verbose:
+            if not quiet:
                 print(
                     f'{emoji.emojize(":white_check_mark:", use_aliases=True)} Sample Input {counter}'
                 )
             correct_count += 1
         else:
-            if verbose:
+            if not quiet:
                 print(
                     f'{emoji.emojize(":x:", use_aliases=True)} Sample Input {counter}'
                 )
-        if verbose:
+        if not quiet:
             print("INPUT")
             print(out)
             print("CORRECT OUTPUT")
