@@ -28,7 +28,7 @@ def CF(problem):
 
     def cleanSoup(soup):
         return [
-            BeautifulSoup(str(inp.find("pre")).replace(newline, "\n"), "html.parser")
+            BeautifulSoup(str(inp.find("pre")).replace("<br/>", "\n"), "html.parser")
             .find("pre")
             .text
             for inp in soup
@@ -38,7 +38,6 @@ def CF(problem):
     url = f"https://codeforces.com/problemset/problem/{num}/{let}"
     soup = webScraper(url)
 
-    newline = "<br/>"
     inputs = cleanSoup(soup.findAll(class_="input"))
     outputs = cleanSoup(soup.findAll(class_="output"))
 
