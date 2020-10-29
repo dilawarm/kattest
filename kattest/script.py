@@ -1,5 +1,5 @@
-from languages import run_code
-from data import Kattis, CF, CSES
+from kattest.languages import run_code
+from kattest.data import Kattis, CF, CSES
 import emoji
 
 

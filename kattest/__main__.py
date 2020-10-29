@@ -1,4 +1,4 @@
-from script import kattest
+from kattest.script import kattest
 import argparse
 
 
