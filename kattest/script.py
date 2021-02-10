@@ -12,7 +12,7 @@ def kattest(args):
     site_map = {"Kattis": Kattis, "CF": CF, "CSES": CSES}
 
     problem = args.problem
-    file = args.file
+    filepath = args.filepath
     site = args.site
     quiet = args.quiet
 
@@ -22,7 +22,7 @@ def kattest(args):
         print("This problem site is not supported :(")
         return -1
 
-    out = run_code(file, testdata)
+    out = run_code(filepath, testdata)
     if out == -1:
         print("Something went wrong :(")
         return -1

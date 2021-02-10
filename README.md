@@ -26,24 +26,15 @@ pip install kattest
 ```
 
 ## How to run
-### Kattis
-Run the following command from the same directory as your solution:
+Run:
 ```
-kattest [Problem ID].[extension]
-Example: kattest Kattis exponial.cpp
+kattest --help
+```
+to see which arguments to pass to kattest.
+
+### Example
+```
+kattest --site {SITE} --problem {PROBLEMID} --filepath {FILEPATH}
 ```
 
-### Code Forces
-Run the following command from the same directory as your solution:
-```
-kattest CF [Problem ID].[extension]
-Example: kattest CF 1328A.py
-```
-
-### CSES
-Run the following command from the same directory as your solution:
-```
-kattest CSES [Problem ID].[extension]
-Example: kattest CSES 1091.c
-```
-Enjoy!
+Enjoy! :rocket:

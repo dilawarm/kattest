@@ -1,5 +1,6 @@
 from subprocess import check_output
 import time
+import os
 
 
 class Language:
@@ -9,11 +10,12 @@ class Language:
         self.remove_line = remove_line
 
 
-def run_code(file, inputs):
-    if file.count(".") != 1:
-        return -1
+def run_code(filepath, inputs):
+    module_path = os.path.dirname(os.path.realpath(__file__))
 
-    filename, extension = file.split(".")
+    file = os.path.join(module_path, filepath)
+
+    filename, extension = os.path.basename(filepath).split(".")
 
     language_map = {
         "py": Language(None, f"python3 {file}", None),
