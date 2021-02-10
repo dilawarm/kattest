@@ -11,9 +11,7 @@ class Language:
 
 
 def run_code(filepath, inputs):
-    module_path = os.path.dirname(os.path.realpath(__file__))
-
-    file = os.path.join(module_path, filepath)
+    file = os.path.join(os.getcwd(), filepath)
 
     filename, extension = os.path.basename(filepath).split(".")
 
