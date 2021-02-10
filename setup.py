@@ -15,7 +15,7 @@ long_description = "Script for testing your code with the sample data files prov
 
 setup(
     name="kattest",
-    version="1.6",
+    version="1.7",
     description="Script for testing your code with the sample data files provided by Kattis, Code Forces and CSES!",
     url="https://github.com/dilawarm/kattest",
     license="MIT",
@@ -23,7 +23,7 @@ setup(
     author_email="dilawarmm@outlook.com",
     author="Dilawar Mahmood",
     packages=find_packages(),
-    download_url="https://github.com/dilawarm/kattest/archive/v1.6.tar.gz",
+    download_url="https://github.com/dilawarm/kattest/archive/v1.7.tar.gz",
     install_requires=[
         "emoji",
         "beautifulsoup4",
