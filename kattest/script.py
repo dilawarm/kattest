@@ -36,13 +36,13 @@ def kattest(args):
         if formatter(user) == formatter(correct):
             if not quiet:
                 print(
-                    f'{emoji.emojize(":white_check_mark:", use_aliases=True)} Sample Input {counter}'
+                    f'{emoji.emojize(":white_check_mark:", language="alias")} Sample Input {counter}'
                 )
             correct_count += 1
         else:
             if not quiet:
                 print(
-                    f'{emoji.emojize(":x:", use_aliases=True)} Sample Input {counter}'
+                    f'{emoji.emojize(":x:", language="alias")} Sample Input {counter}'
                 )
         if not quiet:
             print("INPUT")
